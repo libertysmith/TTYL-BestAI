@@ -1,24 +1,28 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowUpRight, ArrowRight, LockKeyhole, MessageCircle, Sparkles, Check, Plus, Minus } from 'lucide-react';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { pageHead } from '@/lib/site';
+import heroImage from '@/assets/quiet-glass.jpg';
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
+export const Route = createFileRoute('/')({
+  head: () => pageHead('Your AI texting companion', 'Meet Ttyl BestAI, a private AI companion accessed through SMS. Apply for approval-based access and start a conversation on your terms.'),
+  component: HomePage,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+const faqs = [
+  ['What exactly is Ttyl BestAI?', 'Ttyl BestAI is an AI texting companion. Once approved and separately enrolled in SMS, you can exchange conversational text messages with an AI—not a human.'],
+  ['Do I need to download an app?', 'No companion app is needed. The conversation happens through SMS in your existing messaging app once your access is activated.'],
+  ['Does applying sign me up for texts?', 'No. Applying is only a request for access. Approved users receive separate instructions and must affirmatively opt in before receiving recurring SMS messages.'],
+  ['How do I stop receiving messages?', 'Reply STOP to cancel SMS messages. Reply HELP for help. Message frequency varies based on your conversations, and message and data rates may apply.'],
+];
+function HomePage() {
+  const [expanded, setExpanded] = useState<number | null>(0);
+  return <main>
+    <section className="home-hero"><img className="hero-image" src={heroImage} alt="" width={1920} height={1024} fetchPriority="high" /><div className="site-container hero-content"><div className="availability"><span />PRIVATE ACCESS · NOW ACCEPTING APPLICATIONS</div><h1>Ttyl BestAI<span>A conversation,<br />on your terms.</span></h1><p>A private AI texting companion for the thoughts,<br className="desktop-break" /> ideas, and little moments that make up your day.<br className="desktop-break" /> Right there in your messages.</p><div className="hero-actions"><Button asChild className="primary-cta"><Link to="/apply">Apply for Access <ArrowUpRight /></Link></Button><Link to="/opt-in" className="text-link">How SMS activation works <ArrowRight size={16} /></Link></div><div className="hero-footnote"><LockKeyhole size={13} /> Approval-based access. An AI companion, not a human.</div></div><div className="conversation-preview" aria-label="Illustrative AI conversation"><div className="conversation-header"><span className="chat-brand"><Sparkles size={18} /></span><div><strong>Ttyl BestAI</strong><small>YOUR AI COMPANION</small></div><span className="chat-tag">SMS</span></div><div className="chat-day">A LITTLE MOMENT FROM YOUR DAY</div><div className="chat-bubble user-bubble">I had an idea on my walk today.</div><div className="chat-bubble ai-bubble">The walking-around kind of idea? Those are usually the good ones. Tell me about it.</div><div className="chat-bubble user-bubble">A tiny bookshop that only opens at night.</div><div className="chat-bubble ai-bubble">Okay, I’m already picturing it. What’s the first book you’d put in the window?</div><div className="chat-example">Illustrative conversation · AI-generated responses</div></div></section>
+    <div className="intro-strip site-container"><span><MessageCircle size={17} /> Just text. No new app.</span><span><LockKeyhole size={17} /> Private, approval-based access.</span><span><Sparkles size={17} /> A conversation that’s yours.</span></div>
+    <section className="site-container experience-section"><div className="section-heading"><div><span className="page-eyebrow">LESS INTERFACE. MORE CONVERSATION.</span><h2>For whatever’s<br />on your mind.</h2></div><p>A passing thought. A new idea. A story from your day.<br />Ttyl BestAI makes room for a conversation—not<br className="desktop-break" /> another thing to manage.</p></div><div className="feature-grid">{[{ icon: MessageCircle, title: 'In your messages.', text: 'No dashboard. No downloads. An AI companion you can reach through the texting app you already use.' }, { icon: Sparkles, title: 'Naturally conversational.', text: 'A place to explore ideas, share everyday moments, and follow a thought wherever it takes you.' }, { icon: LockKeyhole, title: 'Intentional from the start.', text: 'Access is reviewed individually. You decide whether to activate SMS, and you can opt out anytime.' }].map(({ icon: Icon, title, text }) => <div className="feature" key={title}><Icon size={23} strokeWidth={1.4} /><h3>{title}</h3><p>{text}</p></div>)}</div></section>
+    <section className="how-section"><div className="site-container"><div className="section-heading"><div><span className="page-eyebrow">A FEW STEPS. THEN, JUST TEXT.</span><h2>Your first hello<br />starts here.</h2></div><Link to="/opt-in" className="text-link">Explore SMS activation <ArrowUpRight size={17} /></Link></div><div className="steps-grid">{[['Apply for access', 'Tell us a little about yourself and what you’re looking for.'], ['Get approved', 'We review your application and share next steps if approved.'], ['Activate your companion', 'Follow the separate SMS opt-in instructions. You’re in control.'], ['Start chatting', 'Send your first message. Let the conversation unfold.']].map(([title, text], i) => <div className="step" key={title}><div className="step-top"><span>0{i + 1}</span>{i === 3 ? <Check size={20} /> : <ArrowRight size={20} />}</div><h3>{title}</h3><p>{text}</p></div>)}</div><p className="consent-note">Applying is a request for access, not consent to receive SMS messages.</p></div></section>
+    <section className="site-container faq-section"><div><span className="page-eyebrow">BEFORE YOU SAY HELLO</span><h2>A few good<br />questions.</h2></div><div className="faq-list">{faqs.map(([question, answer], i) => <div className="faq-item" key={question}><Button variant="ghost" className="faq-button" aria-expanded={expanded === i} aria-controls={`faq-${i}`} onClick={() => setExpanded(expanded === i ? null : i)}>{question}{expanded === i ? <Minus /> : <Plus />}</Button>{expanded === i && <p id={`faq-${i}`}>{answer}</p>}</div>)}</div></section>
+    <section className="closing-section"><div className="site-container"><span className="page-eyebrow">YOUR NEXT CONVERSATION</span><h2>A little curiosity.<br />A simple hello.</h2><Button asChild className="primary-cta"><Link to="/apply">Apply for Access <ArrowUpRight /></Link></Button><p>Private access. Personal conversation. Always AI.</p></div></section>
+  </main>;
 }
