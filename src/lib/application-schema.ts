@@ -5,8 +5,8 @@ export const applicationSchema = z.object({
   phone: z.string().trim().min(7, 'Please enter your phone number.').max(30).regex(/^\+?[0-9() .-]+$/, 'Please enter a valid phone number.').refine(value => value.replace(/\D/g, '').length >= 7 && value.replace(/\D/g, '').length <= 15, 'Use 7–15 digits, including your country code.'),
   expectations: z.string().trim().min(1, 'Please tell us what you are looking for.').max(2000),
   referral: z.string().trim().min(1, 'Please tell us how you heard about us.').max(200),
-  additional: z.string().trim().max(2000).default(''),
+  additional: z.string().trim().max(2000),
   acknowledged: z.boolean().refine(value => value, 'Please acknowledge that applying is not SMS consent.'),
-  website: z.string().max(0, 'Unable to submit this application.').default(''),
+  website: z.string().max(0, 'Unable to submit this application.'),
 });
 export type ApplicationInput = z.infer<typeof applicationSchema>;
