@@ -14,7 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      access_applications: {
+        Row: {
+          acknowledged: boolean
+          additional: string
+          created_at: string
+          email: string
+          expectations: string
+          id: string
+          name: string
+          phone: string
+          referral: string
+          sms_consent: boolean
+        }
+        Insert: {
+          acknowledged: boolean
+          additional?: string
+          created_at?: string
+          email: string
+          expectations: string
+          id?: string
+          name: string
+          phone: string
+          referral: string
+          sms_consent?: boolean
+        }
+        Update: {
+          acknowledged?: boolean
+          additional?: string
+          created_at?: string
+          email?: string
+          expectations?: string
+          id?: string
+          name?: string
+          phone?: string
+          referral?: string
+          sms_consent?: boolean
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
