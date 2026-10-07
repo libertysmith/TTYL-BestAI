@@ -402,3 +402,5 @@ h3 { font-size: 17px; font-weight: 650; margin-bottom: 13px; }
   .desktop-break { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation: none !important; transition: none !important; } }
+
+.invitation-only { font-weight: 600; letter-spacing: 0.01em; color: var(--foreground); }
