@@ -1,0 +1,7 @@
+import { Link } from '@tanstack/react-router';
+import { ArrowUpRight } from 'lucide-react';
+import type { ReactNode } from 'react';
+export type LegalSection = { title: string; content: ReactNode };
+export function LegalPage({ title, intro, sections }: { title: string; intro: string; sections: LegalSection[] }) {
+  return <main className="site-container legal-page"><div className="page-eyebrow">THE IMPORTANT DETAILS</div><h1>{title}</h1><p className="page-intro">{intro}</p><div className="legal-meta">Last updated: October 7, 2026</div><div className="legal-layout"><aside><span className="small-label">ON THIS PAGE</span><nav aria-label={`${title} contents`}>{sections.map((section, i) => <a key={section.title} href={`#section-${i + 1}`}>{String(i + 1).padStart(2, '0')}<span>{section.title}</span></a>)}</nav><Link className="text-link" to={title === 'Privacy Policy' ? '/terms' : '/privacy'}>{title === 'Privacy Policy' ? 'Terms & Conditions' : 'Privacy Policy'} <ArrowUpRight size={15} /></Link></aside><article>{sections.map((section, i) => <section id={`section-${i + 1}`} key={section.title}><span className="section-number">{String(i + 1).padStart(2, '0')}</span><h2>{section.title}</h2><div className="legal-copy">{section.content}</div></section>)}</article></div></main>;
+}
