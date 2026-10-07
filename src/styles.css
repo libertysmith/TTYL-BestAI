@@ -174,7 +174,7 @@ a:focus-visible { outline: 2px solid var(--ring); outline-offset: 5px; }
 .desktop-nav { display: flex; align-items: center; gap: 33px; font-size: 13px; }
 .desktop-nav > a { color: var(--muted-foreground); }
 .desktop-nav > a.nav-active { color: var(--foreground); }
-.nav-apply { height: 40px; padding-inline: 19px; border-radius: 5px; font-size: 12px; box-shadow: none; }
+.nav-apply { height: 40px; padding-inline: 19px; border-radius: 5px; font-size: 12px; box-shadow: none; color: var(--primary-foreground); }
 .mobile-menu-button { display: none; }
 .mobile-nav { background: var(--background); padding: 20px 24px; border-bottom: 1px solid var(--border); }
 .mobile-nav a { display: flex; justify-content: space-between; padding: 12px 0; }
@@ -187,7 +187,7 @@ a:focus-visible { outline: 2px solid var(--ring); outline-offset: 5px; }
 .hero-content h1 > span { display: block; color: var(--muted-foreground); font-weight: 500; }
 .hero-content > p { line-height: 1.8; font-size: 15px; margin-bottom: 28px; }
 .hero-actions { display: flex; align-items: center; gap: 26px; }
-.primary-cta { height: 48px; padding-inline: 22px; border-radius: 5px; font-size: 12px; gap: 20px; box-shadow: none; }
+.primary-cta { height: 48px; padding-inline: 22px; border-radius: 5px; font-size: 12px; gap: 20px; box-shadow: none; color: var(--primary-foreground); }
 .text-link { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 550; }
 .text-link:hover { color: var(--brand-green); }
 .hero-footnote { display: flex; gap: 7px; align-items: center; margin-top: 20px; font-size: 10px; color: var(--muted-foreground); }
