@@ -9,6 +9,8 @@ export const getRouter = () => {
     routeTree,
     context: { queryClient },
     scrollRestoration: true,
+    // GitHub Pages serves prerendered folders at /page/, so keep URLs slash-terminated.
+    trailingSlash: "always",
     defaultPreloadStaleTime: 0,
   });
 
