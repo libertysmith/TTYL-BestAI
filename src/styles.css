@@ -173,6 +173,7 @@ a:focus-visible { outline: 2px solid var(--ring); outline-offset: 5px; }
 .brand-mark > span { width: 5px; height: 5px; background: var(--foreground); position: absolute; border-radius: 50%; top: 13px; left: 13px; }
 .desktop-nav { display: flex; align-items: center; gap: 33px; font-size: 13px; }
 .desktop-nav > a { color: var(--muted-foreground); }
+.desktop-nav > a.nav-apply { color: var(--primary-foreground); }
 .desktop-nav > a.nav-active { color: var(--foreground); }
 .nav-apply { height: 40px; padding-inline: 19px; border-radius: 5px; font-size: 12px; box-shadow: none; color: var(--primary-foreground); }
 .mobile-menu-button { display: none; }
